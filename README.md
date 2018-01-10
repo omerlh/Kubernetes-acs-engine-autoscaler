@@ -59,6 +59,13 @@ You can then save it in Kubernetes:
 $ kubectl create -f secret.yaml
 ```
 
+You can also generating this file from the `azuredeploy.parameters.json`, that was used to deploy the ACS engine cluster.
+To use it, copy all the files under `secret-generator` to your local machine (or just checkout this repo) and run:
+```
+ruby secret_generator.rb <path_to_azuredeploy.parameters.json>
+```
+You'll have a ready to use `secret.yaml`. All you need to do is set the `azure-sp-tenant-id` to match your tenant id, base64 encoded.
+
 [scaling-deployment.yaml](scaling-deployment.yaml) has an example
 [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 that will set up Kubernetes to always run exactly one copy of the autoscaler.
